@@ -78,6 +78,7 @@ app.put('/api/todos/:id', function (req, res) {
     res.json(todos[index]);
 });
 
+//포트 설정
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });

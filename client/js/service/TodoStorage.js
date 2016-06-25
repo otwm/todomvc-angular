@@ -1,5 +1,11 @@
+/**
+ * todo stoage
+ */
 angular.module("todomvc").factory('todoStorage', function ($http) {
     var storage = {
+        /**
+         * 완료된 것들 삭제
+         */
         destroyCompleted: function () {
             var incompletedTodos = storage.todos.filter(function (t) {
                 return t.completed === false;
@@ -7,6 +13,10 @@ angular.module("todomvc").factory('todoStorage', function ($http) {
 
             angular.copy(incompletedTodos, storage.todos);
         },
+        /**
+         * 삭제
+         * @param todo
+         */
         destroy: function (todo) {
             // find index
             var index = storage.todos.findIndex(function (t) {
@@ -18,6 +28,10 @@ angular.module("todomvc").factory('todoStorage', function ($http) {
                 storage.todos.splice(index, 1);
             }
         },
+        /**
+         * 생성
+         * @param newTodoTitle
+         */
         post: function (newTodoTitle) {
             var body = {
                 title: newTodoTitle
@@ -26,6 +40,11 @@ angular.module("todomvc").factory('todoStorage', function ($http) {
                 storage.todos.push(response.data);
             });
         },
+        /**
+         * 조회
+         * @param callback
+         * @returns {Array}
+         */
         get: function (callback) {
             $http.get('/api/todos').then(function success(response) {
                 storage.todos = response.data;
@@ -33,13 +52,17 @@ angular.module("todomvc").factory('todoStorage', function ($http) {
             });
             return storage.todos;
         },
-        put: function (id,title) {
+        /**
+         * 수정
+         * @param id
+         * @param title
+         */
+        put: function (id, title) {
             var body = {
                 title: title
             };
             $http.put('/api/todos/' + id, body).then(function success(response) {
-                // storage.todos = response.data;
-                // callback(response.data);
+                console.log(storage.todos);
             });
         },
         todos: []
