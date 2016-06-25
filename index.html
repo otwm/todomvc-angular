@@ -4,21 +4,28 @@
     <meta charset="utf-8"/>
     <title>TodoMvc Angular</title>
 </head>
-<body ng-controller="TodomvcCtrl" class="scope">
-<h1>hello world!</h1>
-<h2>{{msg}}</h2>
+<body ng-controller="TodomvcCtrl">
+<h1>Todo</h1>
+
+<ul>
+    <li ng-repeat="todo in todos">
+        <div>
+            <input type="checkbox" ng-model="todo.completed"/>
+            <input type="text" ng-model="todo.title"/>
+            <button ng-click="remove(todo)">remove</button>
+        </div>
+    </li>
+</ul>
+
+<pre>{{todos | json }}</pre>
+
 <!-- angular -->
 <script src="node_modules/angular/angular.js"></script>
 
-<script type="text/javascript">
-    //모듈
-    angular.module('todomvc', []);
+<!-- app -->
+<script type="text/javascript" src="js/app.js"></script>
 
-    //콘트롤러
-    angular.module('todomvc').controller('TodomvcCtrl', function ($scope) {
-        $scope.msg = 'Hello world!';
-    });
-</script>
-
+<!-- controller -->
+<script type="text/javascript" src="js/controller/TodomvcController.js"></script>
 </body>
 </html>
