@@ -33,6 +33,15 @@ angular.module("todomvc").factory('todoStorage', function ($http) {
             });
             return storage.todos;
         },
+        put: function (id,title) {
+            var body = {
+                title: title
+            };
+            $http.put('/api/todos/' + id, body).then(function success(response) {
+                // storage.todos = response.data;
+                // callback(response.data);
+            });
+        },
         todos: []
     };
 

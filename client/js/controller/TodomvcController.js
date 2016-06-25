@@ -17,7 +17,11 @@ angular.module('todomvc').controller('TodomvcCtrl', function ($scope, todoStorag
         todoStorage.destroyCompleted();
     };
 
-    todoStorage.get(function(data){
-        $scope.todos = data;    
+    todoStorage.get(function (data) {
+        $scope.todos = data;
     });
+
+    $scope.put = function (id, title) {
+        todoStorage.put(id, title);
+    };
 });

@@ -70,9 +70,13 @@ app.del('/api/todos/:id', function (req, res) {
 });
 
 
-// app.put('/api/todos', function (req, res) {
-//     res.sendfile('index.html');
-// });
+app.put('/api/todos/:id', function (req, res) {
+    var index = todos.findIndex(function (t) {
+        return t.id === parseInt(req.params.id);
+    });
+    todos[index].title = req.body.title;
+    res.json(todos[index]);
+});
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
