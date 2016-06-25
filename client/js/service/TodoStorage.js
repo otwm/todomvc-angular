@@ -30,23 +30,7 @@ angular.module("todomvc").factory('todoStorage', function () {
         get: function () {
             return storage.todos;
         },
-        todos: [
-            {
-                id: 1,
-                title: 'code Lab',
-                completed: true
-            },
-            {
-                id: 2,
-                title: 'study',
-                completed: false
-            },
-            {
-                id: 3,
-                title: '수영',
-                completed: true
-            }
-        ]
+        todos: []
     };
 
     return storage;
