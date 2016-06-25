@@ -7,7 +7,10 @@ angular.module('todomvc').controller('TodomvcCtrl', function ($scope, todoStorag
      * @param todo
      */
     $scope.remove = function (todo) {
-        todoStorage.destroy(todo);
+        todoStorage.destroy(todo, function (data) {
+            console.log(data);
+            $scope.todos = data;
+        });
     };
 
     /**
@@ -37,10 +40,9 @@ angular.module('todomvc').controller('TodomvcCtrl', function ($scope, todoStorag
 
     /**
      * 수정
-     * @param id
-     * @param title
+     * @param todo
      */
-    $scope.put = function (id, title) {
-        todoStorage.put(id, title);
+    $scope.put = function (todo) {
+        todoStorage.put(todo);
     };
 });

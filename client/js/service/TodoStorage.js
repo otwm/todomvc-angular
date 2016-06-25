@@ -17,16 +17,21 @@ angular.module("todomvc").factory('todoStorage', function ($http) {
          * 삭제
          * @param todo
          */
-        destroy: function (todo) {
+        destroy: function (todo, callback) {
             // find index
-            var index = storage.todos.findIndex(function (t) {
-                return t.id === todo.id;
+            // var index = storage.todos.findIndex(function (t) {
+            //     return t.id === todo.id;
+            // });
+            //
+            // // remove
+            // if (index > -1) {
+            //     storage.todos.splice(index, 1);
+            // }
+            $http.delete('/api/todos/' + todo.id).then(function success(response) {
+                console.log(response.data);
+                storage.todos = response.data;
+                callback(response.data);
             });
-
-            // remove
-            if (index > -1) {
-                storage.todos.splice(index, 1);
-            }
         },
         /**
          * 생성
@@ -57,11 +62,13 @@ angular.module("todomvc").factory('todoStorage', function ($http) {
          * @param id
          * @param title
          */
-        put: function (id, title) {
+        put: function (todo) {
+            console.log(todo.completed);
             var body = {
-                title: title
+                title: todo.title
+                , completed: todo.completed
             };
-            $http.put('/api/todos/' + id, body).then(function success(response) {
+            $http.put('/api/todos/' + todo.id, body).then(function success(response) {
                 console.log(storage.todos);
             });
         },

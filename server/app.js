@@ -75,6 +75,7 @@ app.put('/api/todos/:id', function (req, res) {
         return t.id === parseInt(req.params.id);
     });
     todos[index].title = req.body.title;
+    todos[index].completed = req.body.completed;
     res.json(todos[index]);
 });
 
