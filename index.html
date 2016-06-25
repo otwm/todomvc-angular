@@ -8,7 +8,14 @@
 <h1>Todo</h1>
 
 <ul>
-    <li ng-repeat="todo in todos">
+    <!-- add form -->
+    <form ng-submit="add(newTodoTitle)">
+        <input type="text" placeholder="type here..." ng-model="newTodoTitle"
+               autofocus/>
+        <button type="submit">Add</button>
+    </form>
+    <!-- todo list -->
+    <li ng-repeat="todo in todos | filter: statusFilter">
         <div>
             <input type="checkbox" ng-model="todo.completed"/>
             <input type="text" ng-model="todo.title"/>
@@ -16,6 +23,27 @@
         </div>
     </li>
 </ul>
+
+<!-- filter -->
+<ul>
+    <li>
+        <button type="button" ng-click="statusFilter={completed:true}"
+        >Completed
+        </button>
+        <button type="button" ng-click="statusFilter={completed:false}"
+        >Active
+        </button>
+        <button type="button" ng-click="statusFilter={}"
+        >All
+        </button>
+        <button type="button" ng-click="clearCompleted()"
+        > Clear completed
+        </button>
+    </li>
+</ul>
+
+
+<pre>{{newTodoTitle | json }}</pre>
 
 <pre>{{todos | json }}</pre>
 
