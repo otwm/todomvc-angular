@@ -3,41 +3,51 @@
 <head>
     <meta charset="utf-8"/>
     <title>TodoMvc Angular</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
 </head>
 <body ng-controller="TodomvcCtrl">
 <h1>Todo</h1>
 
-<ul>
-    <!-- add form -->
-    <form ng-submit="add(newTodoTitle)">
+<!-- add form -->
+<form ng-submit="add(newTodoTitle)">
+    <div class="input-group">
         <input type="text" placeholder="type here..." ng-model="newTodoTitle"
-               autofocus/>
-        <button type="submit">Add</button>
-    </form>
+               autofocus class="form-control"/>
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-success">Add</button>
+            </span>
+    </div>
+</form>
+
+<ul class="list-unstyled">
     <!-- todo list -->
     <li ng-repeat="todo in todos | filter: statusFilter">
-        <div>
-            <input type="checkbox" ng-model="todo.completed"/>
-            <input type="text" ng-model="todo.title"/>
-            <button ng-click="remove(todo)">remove</button>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input type="checkbox" ng-model="todo.completed"/>
+            </span>
+            <input type="text" ng-model="todo.title" class="form-control"/>
+            <span class="input-group-btn">
+                <button ng-click="remove(todo)" class="btn btn-danger">remove</button>
+            </span>
         </div>
     </li>
 </ul>
 
 <!-- filter -->
-<ul>
+<ul class="list-unstyled">
     <li>
         <button type="button" ng-click="statusFilter={completed:true}"
-        >Completed
+            class="btn btn-default">Completed
         </button>
         <button type="button" ng-click="statusFilter={completed:false}"
-        >Active
+            class="btn btn-default">Active
         </button>
         <button type="button" ng-click="statusFilter={}"
-        >All
+            class="btn btn-default">All
         </button>
         <button type="button" ng-click="clearCompleted()"
-        > Clear completed
+            class="btn btn-default"> Clear completed
         </button>
     </li>
 </ul>
