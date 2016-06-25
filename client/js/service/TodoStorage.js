@@ -18,15 +18,6 @@ angular.module("todomvc").factory('todoStorage', function ($http) {
          * @param todo
          */
         destroy: function (todo, callback) {
-            // find index
-            // var index = storage.todos.findIndex(function (t) {
-            //     return t.id === todo.id;
-            // });
-            //
-            // // remove
-            // if (index > -1) {
-            //     storage.todos.splice(index, 1);
-            // }
             $http.delete('/api/todos/' + todo.id).then(function success(response) {
                 console.log(response.data);
                 storage.todos = response.data;
