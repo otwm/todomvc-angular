@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="todomvc">
+<head>
+    <meta charset="utf-8"/>
+    <title>TodoMvc Angular</title>
+</head>
+<body ng-controller="TodomvcCtrl" class="scope">
+<h1>hello world!</h1>
+<h2>{{msg}}</h2>
+<!-- angular -->
+<script src="node_modules/angular/angular.js"></script>
+
+<script type="text/javascript">
+    //모듈
+    angular.module('todomvc', []);
+
+    //콘트롤러
+    angular.module('todomvc').controller('TodomvcCtrl', function ($scope) {
+        $scope.msg = 'Hello world!';
+    });
+</script>
+
+</body>
+</html>
