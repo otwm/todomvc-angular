@@ -16,6 +16,8 @@ angular.module('todomvc').controller('TodomvcCtrl', function ($scope, todoStorag
     $scope.clearCompleted = function () {
         todoStorage.destroyCompleted();
     };
-    
-    $scope.todos = todoStorage.get();
+
+    todoStorage.get(function(data){
+        $scope.todos = data;    
+    });
 });

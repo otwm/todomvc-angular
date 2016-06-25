@@ -1,4 +1,4 @@
-angular.module("todomvc").factory('todoStorage', function () {
+angular.module("todomvc").factory('todoStorage', function ($http) {
     var storage = {
         destroyCompleted: function () {
             var incompletedTodos = storage.todos.filter(function (t) {
@@ -27,7 +27,10 @@ angular.module("todomvc").factory('todoStorage', function () {
                 completed: false
             });
         },
-        get: function () {
+        get: function (callback) {
+            $http.get('/api/todos').then(function success(response) {
+                callback(response.data);
+            });
             return storage.todos;
         },
         todos: []
