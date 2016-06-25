@@ -18,6 +18,7 @@
   "homepage": "https://github.com/otwm/todomvc-angular#readme",
   "dependencies": {
     "angular": "^1.5.7",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "express": "^4.14.0"
   }
 }

@@ -2,3 +2,5 @@
 
 * mean stack관련된 이야기
 몽고, express, node , angular
+
+* node server/app.js
